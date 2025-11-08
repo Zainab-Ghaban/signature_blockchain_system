@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>واجهة الموظف - رفع الوثيقة</title>
+  <link rel="stylesheet" href="css/employee.css" />
+</head>
+<body>
+
+  <!-- 🌟 زر القائمة الجانبية (3 خطوط) -->
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+  <!-- 🌟 القائمة المنسدلة -->
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="my_request.html">📄 طلباتي</a>
+    <a href="my_info.html">👤 معلوماتي</a>
+    <a href="index.html">➡️ تسجيل خروج</a>
+  </div>
+
+  <!-- 🔹 السهم (يبقى كما هو) -->
+  <a href="index.html" class="back-arrow"></a>
+
+  <!-- عنوان -->
+  <header class="topbar">
+    <h1>مرحباً، الموظف</h1>
+  </header>
+
+  <!-- محتوى الصفحة -->
+  <main class="wrap">
+    <section class="glass card">
+      <h2>رفع وثيقة للتوثيق</h2>
+
+      <div class="row">
+        <!-- عمود اختيار الملف -->
+        <div class="col">
+          <label for="fileInput">اختر الملف</label>
+          <input id="fileInput" type="file" accept=".pdf,.doc,.docx,.jpg,.png" />
+          <p class="hint">الحد الأقصى لحجم الملف: 50 ميجابايت</p>
+          <button id="btnHash" class="btn primary">توليد البصمة (SHA-256)</button>
+        </div>
+
+        <!-- عمود عرض البصمة -->
+        <div class="col">
+          <label>بصمة الوثيقة</label>
+          <pre id="hashOutput" class="hashbox" dir="ltr">— لا توجد بصمة بعد —</pre>
+          <button id="btnSend" class="btn secondary" disabled>📩 إرسال للتوثيق</button>
+          <small id="status" class="status"></small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- إشعارات -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/employee.js"></script>
+  <script>
+    // JS للقائمة الجانبية
+    function toggleMenu(){
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>

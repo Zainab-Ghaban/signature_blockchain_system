@@ -1,0 +1,37 @@
+<!-- frontend/register.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>إنشاء حساب - نظام التوثيق الرقمي</title>
+  <link rel="stylesheet" href="css/registry.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>إنشاء حساب جديد</h2>
+    <form id="registerForm">
+
+      <label>الاسم الكامل:</label>
+      <input type="text" id="fullname" required>
+
+      <label>البريد الإلكتروني:</label>
+      <input type="email" id="email" required>
+
+      <label>كلمة المرور:</label>
+      <input type="password" id="password" required>
+
+      <label>تأكيد كلمة المرور:</label>
+      <input type="password" id="confirmPassword" required>
+
+      <button type="submit" class="btn">تسجيل</button>
+
+      <p class="note">
+        لديك حساب بالفعل؟ <a href="index.html">تسجيل الدخول</a>
+      </p>
+    </form>
+  </div>
+
+  <script src="js/register.js"></script>
+</body>
+</html>

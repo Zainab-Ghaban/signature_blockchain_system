@@ -1,0 +1,166 @@
+/* 🎨 المتغيرات العامة */
+:root {
+  --bg1:#071e3d; --bg2:#1f4287; --bg3:#278ea5;
+  --glass: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.25);
+  --text:#ffffff; --muted:#cfd8e3;
+  --accent:#1f8ac0; --accent-d:#166d96;
+}
+
+/* ⭐ تنسيق الصفحة */
+body {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  background: url("../assets/bg-watermark.png") no-repeat center/cover fixed;
+  color: var(--text);
+  height: 100vh;
+}
+
+/* ✅ شريط علوي */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+.topbar h1 { margin: 0; font-size: 22px; }
+
+.back-arrow {
+  position: absolute;
+  right: 25px;
+  width: 22px;
+  height: 22px;
+  border-right: 3px solid white;
+  border-top: 3px solid white;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+/* ✅ زر القائمة */
+.menu { position: absolute; left: 25px; }
+.menu-btn {
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+}
+.menu-list {
+  display: none;
+  position: absolute;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  list-style: none;
+  margin-top: 10px;
+  padding: 10px;
+}
+.menu:hover .menu-list { display: block; }
+.menu-list li { margin: 5px 0; }
+.menu-list a { color: #fff; text-decoration: none; font-size: 14px; }
+
+/* ✅ الكارد */
+.wrap {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  width: 75%;
+  background: var(--glass);
+  padding: 25px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(14px);
+}
+
+/* ✅ الحقول */
+input[type="file"] {
+  padding: 10px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px;
+  color: #fff;
+}
+
+.hashbox {
+  min-height: 90px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* ✅ الأزرار */
+.btn {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.primary { background: var(--accent); color: #fff; }
+.secondary { background: transparent; border: 1px solid #fff; color: #fff; }
+/* 🌟 زر القائمة (3 خطوط) */
+.menu-icon {
+  position: fixed;
+  top: 20px;
+  left: 25px; /* قربناه للداخل */
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  z-index: 200;
+}
+
+/* 🌟 القائمة المنسدلة */
+.dropdown-menu {
+  position: fixed;
+  top: 55px;
+  left: 20px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
+  padding: 10px 0;
+  display: none;
+  flex-direction: column;
+  min-width: 160px;
+  z-index: 199;
+}
+
+.dropdown-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: block;
+  transition: 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(255,255,255,0.25);
+  cursor: pointer;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+/* السهم في اليمين يبقى كما هو */
+.back-arrow {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width: 20px;
+  height: 20px;
+  border-right: 3px solid #fff;
+  border-top: 3px solid #fff;
+  transform: rotate(45deg);
+  cursor: pointer;
+  z-index: 200;
+}

@@ -1,0 +1,117 @@
+/* ===== الألوان العامة ===== */
+:root{
+  --bg1:#071e3d; --bg2:#1f4287; --bg3:#278ea5;
+  --glass: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.25);
+  --text:#ffffff; --muted:#cfd8e3;
+  --ok:#3cff91; --err:#ff6b6b; --pending:#ffc107;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family:"Tajawal", sans-serif;
+  background: url("../assets/bg-watermark.png") no-repeat center/cover fixed;
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ===== الهيدر ===== */
+.header{
+  width:100%;
+  padding:10px 30px;
+  position:fixed;
+  top:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  z-index:100;
+}
+.title{
+  margin:10px;
+  font-size:28px;
+}
+.back-arrow{
+  position:absolute;
+  right:40px; top:50%;
+  width:18px; height:18px;
+  border-right:3px solid #fff;
+  border-top:3px solid #fff;
+  transform:translateY(-50%) rotate(45deg);
+  cursor:pointer;
+}
+.menu-icon{
+  position:absolute;
+  left:40px; top:50%;
+  transform:translateY(-50%);
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* ===== القائمة المنسدلة ===== */
+.dropdown-menu{
+  position:absolute;
+  top:60px; left:20px;
+  background:rgba(255,255,255,0.15);
+  border-radius:10px;
+  padding:10px;
+  display:none;
+  flex-direction:column;
+  min-width:160px;
+}
+.dropdown-menu a{
+  color:white;
+  padding:8px;
+  text-decoration:none;
+  display:block;
+  border-radius:6px;
+}
+.dropdown-menu a:hover{
+  background:rgba(255,255,255,0.2);
+}
+.dropdown-menu.show{
+  display:flex;
+}
+
+/* ===== الكارد الزجاجي للجدول ===== */
+.content{
+  margin-top:100px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.glass-table{
+  width:80%;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:15px;
+  padding:20px;
+  backdrop-filter:blur(14px);
+}
+.section-title{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+/* ===== جدول الطلبات ===== */
+table{
+  width:100%;
+  border-collapse:collapse;
+  text-align:center;
+}
+thead{
+  background:rgba(0,0,0,0.2);
+  font-weight:600;
+}
+thead th{
+  padding:12px;
+}
+tbody td{
+  padding:10px;
+  border-bottom:1px solid rgba(255,255,255,0.15);
+}
+.pending{ color:var(--pending); }
+.approved{ color:var(--ok); }
+.rejected{ color:var(--err); }

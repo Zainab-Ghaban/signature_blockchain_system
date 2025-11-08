@@ -1,0 +1,20 @@
+:root{
+  --accent:#2b7a78;
+  --bg:#f3f6f8;
+  --card:#ffffff;
+  --text:#222;
+}
+*{box-sizing:border-box;font-family:Arial, "Noto Naskh Arabic", sans-serif}
+body{margin:0;background:var(--bg);color:var(--text)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--accent);color:#fff}
+.topbar .logo{height:36px;margin-left:8px}
+.container{max-width:900px;margin:30px auto;padding:0 16px}
+.card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.login-card input, .card input{display:block;width:100%;padding:10px;margin:8px 0;border:1px solid #ddd;border-radius:6px}
+button{background:var(--accent);color:#fff;padding:10px 14px;border:0;border-radius:6px;cursor:pointer}
+button:disabled{opacity:0.6}
+.links{margin-top:12px}
+.note{font-size:12px;color:#666;margin-top:8px}
+.result pre{background:#f4f4f4;padding:8px;border-radius:6px;white-space:pre-wrap;word-break:break-all}
+.back{color:#fff;text-decoration:none}
+/* نفس تنسيق login.html */

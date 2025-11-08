@@ -1,0 +1,145 @@
+/* ------------ خلفية كاملة + أشكال زجاجية ---------- */
+
+body {
+    margin: 0;
+    font-family: "Tajawal", sans-serif;
+    background: linear-gradient(135deg, #071e3d, #1f4287, #278ea5);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* طبقات خلفية (أسهم / مربعات شفافة) */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: rotate(45deg);
+    border-radius: 20px;
+}
+
+/* واحدة يمين */
+body::before {
+    top: -50px;
+    right: -100px;
+}
+
+/* واحدة يسار */
+body::after {
+    bottom: -50px;
+    left: -100px;
+}
+
+/* ------------ صندوق إنشاء الحساب (زجاجي) ---------- */
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 15px;
+  padding: 30px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 380px;
+  color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 10;
+  text-align: center;
+}
+
+/* العنوان */
+.container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* ------------ الحقول ---------- */
+label {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #d7e3f0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #fcfbfb;
+    color: rgba(3, 37, 71, 0.877);
+    font-size: 14px;
+    outline: none;
+}
+
+input::placeholder {
+  color: #cfcfcf;
+}
+
+/* ------------ زر التسجيل ---------- */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background: #1f8ac0;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #166d96;
+}
+
+/* ------------ رابط العودة لتسجيل الدخول ---------- */
+.note {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #cad9e8;
+}
+
+.note a {
+  color: #78c8ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.note a:hover {
+  text-decoration: underline;
+}
+/* ---------------- تأثير لمعان للزر (Glow Button) ---------------- */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* ---------------- وميض خفيف حول الزر ---------------- */
+.btn:hover {
+    box-shadow: 0 0 10px rgba(120,200,255,0.6), 0 0 20px rgba(120,200,255,0.4);
+}

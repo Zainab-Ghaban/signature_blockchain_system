@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>طلباتي - الموظف</title>
+  <link rel="stylesheet" href="css/my_request.css">
+</head>
+<body>
+
+  <!-- ===== الهيدر (ثابت مثل صفحة الموظف) ===== -->
+  <header class="header">
+    <h1 class="title">مرحباً، <span id="employeeName">الموظف</span></h1>
+
+    <!-- زر السهم للعودة -->
+    <a href="employee.html" class="back-arrow"></a>
+
+    <!-- زر القائمة (ثلاث خطوط) -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <!-- القائمة المنسدلة -->
+    <div class="dropdown-menu" id="menu">
+      <a href="employee.html">📤 رفع وثيقة</a>
+      <a href="my_request.html">📁 طلباتي</a>
+      <a href="my_info.html">👤 معلوماتي</a>
+      <a href="index.html">➡️ تسجيل خروج</a>
+    </div>
+  </header>
+
+  <!-- ===== محتوى الصفحة ===== -->
+  <main class="content">
+    <section class="glass-table">
+      <h2 class="section-title">📁 قائمة طلباتي</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>اسم الملف</th>
+            <th>تاريخ الإرسال</th>
+            <th>الحالة</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>document1.pdf</td>
+            <td>2025-02-01</td>
+            <td class="pending">⏳ قيد التوثيق</td>
+          </tr>
+          <tr>
+            <td>contract.docx</td>
+            <td>2025-01-20</td>
+            <td class="approved">✅ موثقة</td>
+          </tr>
+          <tr>
+            <td>passport.png</td>
+            <td>2025-01-15</td>
+            <td class="rejected">❌ مرفوضة</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+  </main>
+
+  <script>
+    function toggleMenu(){
+      document.getElementById("menu").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
