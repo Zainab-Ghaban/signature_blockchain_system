@@ -1,25 +1,97 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>لوحة تحكم المدير - نظام التوثيق الرقمي</title>
-    <link rel="stylesheet" href="css/admin.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>لوحة المدير - نظام التوثيق الرقمي</title>
+  <link rel="stylesheet" href="css/admin.css" />
 </head>
 <body>
 
-    <!-- صندوق لوحة التحكم -->
-    <div class="admin-container">
-        <h2>لوحة تحكم المدير</h2>
-        <p class="welcome">مرحباً بك، مدير النظام 👋</p>
+  <!-- ✅ زر القائمة (3 خطوط يسار) -->
+  <button class="menu-icon" aria-label="القائمة" onclick="toggleMenu()">☰</button>
 
-        <!-- أزرار التحكم -->
-        <div class="admin-actions">
-            <button onclick="location.href='manage-users.html'">إدارة المستخدمين</button>
-            <button onclick="location.href='requests.html'">عرض طلبات التوثيق</button>
-            <button onclick="location.href='settings.html'">إعدادات النظام</button>
-            <button class="logout" onclick="location.href='index.html'">تسجيل الخروج</button>
-        </div>
-    </div>
+  <!-- ✅ سهم الرجوع يمين -->
+  <a href="index.html" class="back-arrow" aria-label="رجوع"></a>
 
+  <!-- ✅ القائمة الجانبية -->
+  <nav id="sideMenu" class="side-menu" aria-label="قائمة المدير">
+    <a href="admin.html" class="active">📥 طلبات التوثيق</a>
+    <a href="admin_reports.html">📊 التقارير والإحصائيات</a>
+    <a href="admin_employees.html">👥 الموظفين</a>
+    <a href="admin_setting.html">⚙️ إعدادات النظام</a>
+    <a href="admin_info.html">👤 معلوماتي</a>
+    <a href="index.html">➡️ تسجيل خروج</a>
+  </nav>
+
+  <!-- ✅ تظليل عند فتح القائمة -->
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- ✅ العنوان -->
+  <header class="header-title">
+    <h1 id="adminWelcome">مرحبًا، المدير</h1>
+  </header>
+
+  <!-- ✅ كروت إحصائية -->
+  <section class="stats">
+    <div class="card">موثقة <span id="statApproved">0</span></div>
+    <div class="card">تحت المراجعة <span id="statPending">2</span></div>
+    <div class="card">مرفوضة <span id="statRejected">1</span></div>
+  </section>
+
+  <!-- ✅ جدول الوثائق -->
+  <main class="container">
+    <section class="glass card">
+      <div class="title-row">
+        <h2>الوثائق الواردة</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table-docs" id="docsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>اسم الوثيقة</th>
+              <th>الموظف</th>
+              <th>التاريخ</th>
+              <th>الحالة</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-id="1" data-status="pending">
+              <td>1</td>
+              <td>عقد-001.pdf</td>
+              <td>أحمد سالم</td>
+              <td>2025-08-14</td>
+              <td><span class="status pending">تحت المراجعة</span></td>
+               <td class="actions">
+  <button class="btn details" onclick="viewDocumentDetails(1)">👁 عرض التفاصيل</button>
+  <button class="btn accept" onclick="approveDocument(1)">قبول</button>
+  <button class="btn reject" onclick="rejectDocument(1)">رفض</button>
+</td>
+            </tr>
+            <tr data-id="2" data-status="pending">
+              <td>2</td>
+              <td>هوية-020.pdf</td>
+              <td>سارة ناصر</td>
+              <td>2025-09-02</td>
+              <td><span class="status pending">تحت المراجعة</span></td>
+             <td class="actions">
+  <button class="btn details" onclick="viewDocumentDetails(2)">👁 عرض التفاصيل</button>
+  <button class="btn accept" onclick="approveDocument(2)">قبول</button>
+  <button class="btn reject" onclick="rejectDocument(2)">رفض</button>
+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ إشعار توست -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/admin.js"></script>
 </body>
 </html>

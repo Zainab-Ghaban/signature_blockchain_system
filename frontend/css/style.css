@@ -1,20 +1,83 @@
 :root{
-  --accent:#2b7a78;
-  --bg:#f3f6f8;
-  --card:#ffffff;
-  --text:#222;
+  --bg:#071e3d;
+  --glass: rgba(255,255,255,0.12);
+  --border: rgba(255,255,255,0.25);
+  --text:#fff;
+  --accent:#1f8ac0;
+  --accent-hover:#0d6ba8;
 }
-*{box-sizing:border-box;font-family:Arial, "Noto Naskh Arabic", sans-serif}
-body{margin:0;background:var(--bg);color:var(--text)}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--accent);color:#fff}
-.topbar .logo{height:36px;margin-left:8px}
-.container{max-width:900px;margin:30px auto;padding:0 16px}
-.card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-.login-card input, .card input{display:block;width:100%;padding:10px;margin:8px 0;border:1px solid #ddd;border-radius:6px}
-button{background:var(--accent);color:#fff;padding:10px 14px;border:0;border-radius:6px;cursor:pointer}
-button:disabled{opacity:0.6}
-.links{margin-top:12px}
-.note{font-size:12px;color:#666;margin-top:8px}
-.result pre{background:#f4f4f4;padding:8px;border-radius:6px;white-space:pre-wrap;word-break:break-all}
-.back{color:#fff;text-decoration:none}
-/* نفس تنسيق login.html */
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"Tajawal",sans-serif;
+  color:var(--text);
+  background:url("../assets/bg-watermark.png") no-repeat center/cover fixed;
+  overflow-x:hidden;
+}
+
+.menu-icon{
+  position:fixed;left:22px;top:22px;
+  font-size:26px;color:#fff;
+  background:transparent;border:none;cursor:pointer;z-index:120;
+}
+
+.back-arrow{
+  position:fixed;right:22px;top:26px;
+  width:18px;height:18px;
+  border-right:3px solid #fff;border-top:3px solid #fff;
+  transform:rotate(45deg);z-index:120;
+}
+
+.side-menu{
+  position:fixed;top:0;left:-240px;width:240px;height:100vh;
+  background:rgba(0,0,0,0.35);backdrop-filter:blur(12px);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;padding-top:80px;gap:6px;
+  transition:.3s;z-index:115;
+}
+.side-menu.show{left:0;}
+.side-menu a{
+  color:#fff;text-decoration:none;padding:12px 18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:15px;transition:.25s;
+}
+.side-menu a:hover,.side-menu a.active{background:rgba(255,255,255,0.16);}
+
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.35);
+  opacity:0;visibility:hidden;transition:.25s;z-index:110;
+}
+.overlay.show{opacity:1;visibility:visible;}
+
+.header-title{text-align:center;margin-top:90px;}
+.header-title h1{font-size:28px;margin:0;}
+.header-title p{color:#cfd8e3;margin:6px 0 20px;}
+
+.container{
+  display:flex;justify-content:center;align-items:center;
+  flex-direction:column;min-height:50vh;
+}
+
+.glass.card{
+  background:var(--glass);border:1px solid var(--border);
+  border-radius:16px;backdrop-filter:blur(14px);
+  padding:25px 30px;max-width:400px;width:90%;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+label{display:block;margin-bottom:8px;font-size:16px;font-weight:bold;}
+input{
+  width:100%;padding:10px;border-radius:8px;border:none;
+  font-size:15px;margin-bottom:18px;
+}
+
+.buttons{display:flex;justify-content:space-between;gap:10px;}
+.btn{
+  flex:1;border:none;border-radius:8px;padding:10px;
+  font-size:15px;cursor:pointer;transition:.25s;
+}
+.btn.verify{background:var(--accent);color:#fff;}
+.btn.verify:hover{background:var(--accent-hover);}
+.btn.scan{background:#444;color:#fff;}
+.btn.scan:hover{opacity:.8;}

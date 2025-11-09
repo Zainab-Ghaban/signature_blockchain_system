@@ -1,0 +1,200 @@
+/* 🎨 إعدادات عامة */
+:root {
+  --bg1:#071e3d;
+  --bg2:#1f4287;
+  --bg3:#278ea5;
+  --glass: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.25);
+  --text:#ffffff;
+  --muted:#cfd8e3;
+  --accent:#1f8ac0;
+  --accent-d:#166d96;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  color: var(--text);
+  background: url("../assets/bg-watermark.png") no-repeat center/cover fixed;
+  overflow-x: hidden;
+}
+
+/* 🌟 زر القائمة */
+.menu-icon {
+  position: fixed;
+  left: 22px;
+  top: 22px;
+  font-size: 26px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 120;
+}
+
+/* ⬅️ القائمة الجانبية */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  width: 240px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+  border-right: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  gap: 8px;
+  transition: 0.35s;
+  z-index: 115;
+}
+
+.side-menu.show {
+  left: 0;
+}
+
+.side-menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 15px;
+  transition: 0.25s;
+}
+
+.side-menu a:hover,
+.side-menu a.active {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* 🌫️ التظليل عند فتح القائمة */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s;
+  z-index: 110;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 🏷️ العنوان */
+.header-title {
+  text-align: center;
+  margin-top: 90px;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* 🧊 تنسيق البطاقات الزجاجية */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.glass.card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  padding: 24px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+
+/* 📋 معلومات المدير */
+.info-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+  margin: 10px 0;
+}
+
+.info-card strong {
+  color: var(--muted);
+}
+
+/* ⚙️ إعدادات الحساب */
+.actions-card {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.actions-card h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.actions-card .btn.change {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.actions-card .btn.change:hover {
+  background: var(--accent-d);
+}
+
+/* 🔔 تنبيهات التوست */
+.toast {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #0b2b22;
+  background: #b9f6e8;
+  border: 1px solid #77e8cf;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: 0.35s;
+  z-index: 125;
+  max-width: 80vw;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  background: #ffd6d6;
+  border-color: #ff9b9b;
+  color: #4a0f0f;
+}
+
+/* 📱 تحسين العرض للجوال */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .glass.card {
+    padding: 18px;
+  }
+}

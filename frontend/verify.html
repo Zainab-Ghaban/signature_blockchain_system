@@ -1,26 +1,69 @@
-<!doctype html>
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>التحقق من الوثائق</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التحقق من الوثيقة - نظام التوثيق الرقمي</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body dir="rtl">
-  <header class="topbar">
-    <h1>التحقق من الوثائق</h1>
-    <a class="back" href="index.html">العودة</a>
+<body>
+
+  <!-- زر القائمة -->
+  <button class="menu-icon" aria-label="القائمة" onclick="toggleMenu()">☰</button>
+
+  <!-- السهم -->
+  <a href="index.html" class="back-arrow" aria-label="رجوع"></a>
+
+  <!-- القائمة الجانبية -->
+  <nav id="sideMenu" class="side-menu">
+    <a href="index.html">🏠 الرئيسية</a>
+    <a href="verify.html" class="active">🔍 التحقق من الوثيقة</a>
+    <a href="contact.html">📞 تواصل معنا</a>
+  </nav>
+
+  <!-- تظليل -->
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- العنوان -->
+  <header class="header-title">
+    <h1>التحقق من الوثيقة</h1>
+    <p>أدخل رمز التحقق أو امسح رمز QR للتحقق من موثوقية الوثيقة</p>
   </header>
 
+  <!-- نموذج التحقق -->
   <main class="container">
-    <section class="card">
-      <h2>تحقق بواسطة رفع الوثيقة</h2>
-      <input id="verifyFile" type="file" accept=".pdf,.doc,.docx,.jpg,.png" />
-      <button id="btnVerify">تحقق الآن</button>
-      <div id="verifyResult"></div>
+    <section class="glass card">
+      <form id="verifyForm" onsubmit="return goToResult(event)">
+        <label for="docCode">🔑 رمز الوثيقة:</label>
+        <input type="text" id="docCode" placeholder="أدخل رمز الوثيقة هنا" required />
+
+        <div class="buttons">
+          <button type="submit" class="btn verify">تحقق الآن</button>
+          <button type="button" class="btn scan" onclick="scanQR()">📷 مسح QR</button>
+        </div>
+      </form>
     </section>
   </main>
 
-  <script src="js/verify.js"></script>
+  <script>
+    function toggleMenu(){
+      document.getElementById('sideMenu').classList.toggle('show');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function goToResult(e){
+      e.preventDefault();
+      const code = document.getElementById("docCode").value.trim();
+      if(code){
+        // تخزين الكود مؤقتاً
+        localStorage.setItem("verifyCode", code);
+        window.location.href = "verify_result.html";
+      }
+    }
+
+    function scanQR(){
+      alert("📷 ميزة مسح QR سيتم ربطها لاحقًا بالواجهة الحقيقية.");
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تواصل معنا - نظام التوثيق الرقمي</title>
+  <link rel="stylesheet" href="css/contact.css" />
+</head>
+<body>
+
+  <!-- ✅ زر القائمة -->
+  <button class="menu-icon" aria-label="القائمة" onclick="toggleMenu()">☰</button>
+
+  <!-- ✅ السهم -->
+  <a href="index.html" class="back-arrow" aria-label="رجوع"></a>
+
+  <!-- ✅ القائمة الجانبية -->
+  <nav id="sideMenu" class="side-menu">
+    <a href="index.html">🏠 الرئيسية</a>
+    <a href="verify.html">🔍 التحقق من الوثيقة</a>
+    <a href="contact.html" class="active">📞 تواصل معنا</a>
+  </nav>
+
+  <!-- ✅ تظليل عند فتح القائمة -->
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- ✅ عنوان الصفحة -->
+  <header class="header-title">
+    <h1>تواصل معنا</h1>
+    <p>يسعدنا استقبال ملاحظاتك واستفساراتك حول نظام التوثيق الرقمي</p>
+  </header>
+
+  <!-- ✅ النموذج الزجاجي -->
+  <main class="container">
+    <section class="glass card">
+      <form id="contactForm" onsubmit="return sendMessage(event)">
+        <label for="name">👤 الاسم الكامل</label>
+        <input type="text" id="name" placeholder="أدخل اسمك الكامل" required />
+
+        <label for="email">📧 البريد الإلكتروني</label>
+        <input type="email" id="email" placeholder="example@email.com" required />
+
+        <label for="message">💬 الرسالة</label>
+        <textarea id="message" rows="4" placeholder="اكتب رسالتك هنا..." required></textarea>
+
+        <button type="submit" class="btn">📨 إرسال الرسالة</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- ✅ إشعار النجاح -->
+  <div id="toast" class="toast" role="alert"></div>
+
+  <script>
+    function toggleMenu(){
+      document.getElementById('sideMenu').classList.toggle('show');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function sendMessage(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+
+      if(name && email && msg){
+        showToast('✔ تم إرسال رسالتك بنجاح، سنتواصل معك قريبًا');
+        document.getElementById('contactForm').reset();
+      } else {
+        showToast('❌ الرجاء تعبئة جميع الحقول', true);
+      }
+    }
+
+    function showToast(text, isError=false){
+      const el = document.getElementById('toast');
+      el.textContent = text;
+      el.classList.toggle('error', isError);
+      el.classList.add('show');
+      setTimeout(()=> el.classList.remove('show'), 2500);
+    }
+  </script>
+
+</body>
+</html>

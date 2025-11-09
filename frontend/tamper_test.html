@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تجربة التزوير - نظام التوثيق الرقمي</title>
+  <link rel="stylesheet" href="css/tamper_test.css" />
+</head>
+<body>
+
+  <!-- ✅ القائمة -->
+  <button class="menu-icon" onclick="toggleMenu()">☰</button>
+  <a href="index.html" class="back-arrow" aria-label="رجوع"></a>
+
+  <nav id="sideMenu" class="side-menu">
+    <a href="index.html">🏠 الرئيسية</a>
+    <a href="verify.html">🔍 التحقق من الوثيقة</a>
+    <a href="tamper_test.html" class="active">🧪 تجربة التزوير</a>
+    <a href="contact.html">📞 تواصل معنا</a>
+  </nav>
+
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- ✅ عنوان الصفحة -->
+  <header class="header-title">
+    <h1>🧪 تجربة كشف التزوير</h1>
+    <p>قم برفع وثيقتين ليتم التحقق إن تم التلاعب أو التعديل في إحداهما</p>
+  </header>
+
+  <!-- ✅ محتوى الصفحة -->
+  <main class="container">
+    <section class="glass card">
+      <div class="row">
+        <div class="col">
+          <label for="fileOriginal">📄 الوثيقة الأصلية</label>
+          <input type="file" id="fileOriginal" accept=".pdf,.jpg,.png,.docx,.txt" />
+          <button class="btn" onclick="generateHash('original')">توليد بصمة الأصلية</button>
+          <pre id="hashOriginal" class="hashbox">— لم يتم توليد البصمة بعد —</pre>
+        </div>
+
+        <div class="col">
+          <label for="fileFake">⚠️ الوثيقة المشبوهة</label>
+          <input type="file" id="fileFake" accept=".pdf,.jpg,.png,.docx,.txt" />
+          <button class="btn" onclick="generateHash('fake')">توليد بصمة المشبوهة</button>
+          <pre id="hashFake" class="hashbox">— لم يتم توليد البصمة بعد —</pre>
+        </div>
+      </div>
+
+      <button class="btn compare" onclick="compareHashes()">🔍 قارن البصمتين</button>
+      <div id="resultBox" class="result-box"></div>
+    </section>
+  </main>
+
+  <!-- ✅ التوست -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/tamper_test.js"></script>
+
+</body>
+</html>

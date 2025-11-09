@@ -1,80 +1,169 @@
-/* ===== خلفية زجاجية مثل تسجيل الدخول ===== */
-body {
-    margin: 0;
-    font-family: "Tajawal", sans-serif;
-    background: linear-gradient(135deg, #071e3d, #1f4287, #278ea5);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+:root{
+  --bg1:#071e3d; --bg2:#1f4287; --bg3:#278ea5;
+  --glass: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.25);
+  --text:#ffffff; --muted:#cfd8e3;
+  --accent:#1f8ac0; --accent-d:#166d96;
+  --ok:#00d39a; --err:#ff6b6b;
 }
 
-/* أشكال ديكورية في الخلفية */
-body::before, body::after {
-    content: "";
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transform: rotate(45deg);
-    border-radius: 25px;
+*{ box-sizing: border-box; }
+
+body{
+  margin:0; color:var(--text);
+  font-family:"Tajawal",sans-serif;
+  background: url("../assets/bg-watermark.png") no-repeat center/cover fixed;
+  overflow-x:hidden;
 }
 
-body::before { top: -60px; left: -60px; }
-body::after  { bottom: -60px; right: -60px; }
-
-/* ===== تصميم لوحة المدير الزجاجية ===== */
-.admin-container {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 15px;
-    padding: 35px 45px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    width: 450px;
-    text-align: center;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 10;
+/* ✅ القائمة (3 خطوط يسار) */
+.menu-icon{
+  position: fixed; left: 22px; top: 22px;
+  font-size: 26px; color:#fff;
+  background: transparent; border:none; cursor:pointer;
+  z-index:120;
 }
 
-.admin-container h2 {
-    font-size: 26px;
-    margin-bottom: 10px;
+/* ✅ السهم يمين */
+.back-arrow{
+  position: fixed; right: 22px; top: 26px;
+  width: 18px; height: 18px;
+  border-right: 3px solid #fff; border-top: 3px solid #fff;
+  transform: rotate(45deg); z-index:120;
+  text-decoration: none;
 }
 
-.welcome {
-    color: #d7e3f0;
-    margin-bottom: 25px;
+/* ✅ القائمة الجانبية */
+.side-menu{
+  position: fixed; top:0; left:-240px;
+  width: 240px; height:100vh;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px);
+  border-right:1px solid var(--glass-border);
+  display:flex; flex-direction:column;
+  padding-top:80px; gap:8px;
+  transition: .35s; z-index:115;
+}
+.side-menu.show{ left:0; }
+.side-menu a{
+  color:#fff; text-decoration:none; padding:12px 18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:.25s; font-size:15px;
+}
+.side-menu a:hover, .side-menu a.active{
+  background: rgba(255,255,255,0.16);
 }
 
-/* ===== أزرار التحكم ===== */
-.admin-actions button {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: none;
-    border-radius: 8px;
-    background: #1f8ac0;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+/* ✅ تظليل */
+.overlay{
+  position: fixed; inset:0;
+  background: rgba(0,0,0,.35);
+  opacity:0; visibility:hidden; transition:.25s;
+  z-index:110;
+}
+.overlay.show{ opacity:1; visibility:visible; }
+
+/* ✅ العنوان */
+.header-title{
+  text-align:center; margin-top:90px;
+}
+.header-title h1{ margin:0; font-size:26px; font-weight:800; }
+
+/* ✅ الإحصائيات */
+.stats{
+  display:flex; justify-content:center; gap:16px; margin:20px 0 10px;
+  flex-wrap: wrap;
+}
+.stats .card{
+  width:180px; text-align:center;
+  background: var(--glass); border:1px solid var(--glass-border);
+  border-radius:14px; backdrop-filter: blur(14px);
+  padding:14px 10px;
+}
+.stats .card span{
+  display:block; margin-top:6px; font-size:22px; font-weight:700;
 }
 
-.admin-actions button:hover {
-    background: #166d96;
+/* ✅ الحاوية */
+.container{
+  max-width:1100px; margin: 0 auto; padding: 0 16px 40px;
 }
 
-/* زر الخروج */
-.admin-actions .logout {
-    background: #b22222;
+/* ✅ الكارد الزجاجي */
+.glass.card{
+  background: var(--glass); border:1px solid var(--glass-border);
+  border-radius:18px; backdrop-filter: blur(14px);
+  padding: 18px; box-shadow: 0 10px 32px rgba(0,0,0,.22);
 }
 
-.admin-actions .logout:hover {
-    background: #8b1a1a;
+/* ✅ الجدول */
+.table-wrap{ overflow:auto; margin-top:8px; }
+.table-docs{
+  width:100%; border-collapse: collapse; min-width:720px;
+}
+.table-docs th, .table-docs td{
+  text-align:center; padding:12px 10px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+  font-size:14px;
+}
+.status{
+  padding:4px 10px; border-radius:999px; font-weight:700; font-size:13px;
+}
+.status.pending{ color:#f1c40f; background: rgba(241,196,15,.12); }
+.status.approved{ color:#0fd48a; background: rgba(15,212,138,.12); }
+.status.rejected{ color:#ff7a7a; background: rgba(255,122,122,.12); }
+
+/* ✅ الأزرار */
+.actions .btn{
+  border:none; border-radius:8px; padding:6px 12px; cursor:pointer;
+  color:#fff; font-size:13px; transition:.25s;
+}
+.actions .details{
+     color:#05264a; font-size:13px; transition:.25s;
+}
+.actions .accept{ background: var(--ok); }
+.actions .reject{ background: var(--err); margin-inline-start:6px; }
+.actions .btn:hover{ opacity:.85; }
+
+/* ✅ التوست */
+.toast{
+  position: fixed; bottom: 18px; right: 18px;
+  padding: 10px 14px; border-radius: 10px;
+  color:#0b2b22; background:#b9f6e8; border:1px solid #77e8cf;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
+  opacity:0; transform: translateY(12px);
+  pointer-events:none; transition:.35s; z-index:125;
+  max-width: 80vw;
+}
+.toast.show{ opacity:1; transform: translateY(0); }
+.toast.error{ background:#ffd6d6; border-color:#ff9b9b; color:#4a0f0f; }
+
+@media (max-width: 768px){
+  .stats .card{ width: 45%; }
+}
+/* 🔹 زر عرض التفاصيل */
+.actions .btn.view {
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+
+.actions .btn.view:hover {
+  background: var(--accent-d);
+  opacity: 0.9;
+  color: #000;
+}
+
+/* 🔹 ترتيب الأزرار أفقيًا */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }

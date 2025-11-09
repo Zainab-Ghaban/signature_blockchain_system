@@ -1,0 +1,95 @@
+:root{
+  --bg1:#071e3d; --bg2:#1f4287; --bg3:#278ea5;
+  --glass: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.25);
+  --text:#ffffff; --muted:#cfd8e3;
+  --accent:#1f8ac0; --accent-d:#166d96;
+}
+
+*{ box-sizing: border-box; }
+body{
+  margin:0;
+  font-family:"Tajawal",sans-serif;
+  color:var(--text);
+  background: url("../assets/bg-watermark.png") no-repeat center/cover fixed;
+  overflow-x:hidden;
+}
+
+/* ✅ القائمة (3 خطوط) */
+.menu-icon{
+  position:fixed;left:22px;top:22px;
+  font-size:26px;color:#fff;background:transparent;border:none;
+  cursor:pointer;z-index:120;
+}
+
+/* ✅ السهم يمين */
+.back-arrow{
+  position:fixed;right:22px;top:26px;
+  width:18px;height:18px;border-right:3px solid #fff;border-top:3px solid #fff;
+  transform:rotate(45deg);z-index:120;text-decoration:none;
+}
+
+/* ✅ القائمة الجانبية */
+.side-menu{
+  position:fixed;top:0;left:-240px;width:240px;height:100vh;
+  background:rgba(0,0,0,0.35);backdrop-filter:blur(14px);
+  border-right:1px solid var(--glass-border);
+  display:flex;flex-direction:column;padding-top:80px;gap:8px;
+  transition:.35s;z-index:115;
+}
+.side-menu.show{left:0;}
+.side-menu a{
+  color:#fff;text-decoration:none;padding:12px 18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:15px;transition:.25s;
+}
+.side-menu a:hover,.side-menu a.active{background:rgba(255,255,255,0.16);}
+
+/* ✅ التظليل */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.35);
+  opacity:0;visibility:hidden;transition:.25s;z-index:110;
+}
+.overlay.show{opacity:1;visibility:visible;}
+
+/* ✅ العنوان */
+.header-title{text-align:center;margin-top:90px;}
+.header-title h1{margin:0;font-size:28px;font-weight:800;}
+.header-title p{color:var(--muted);margin-top:6px;}
+
+/* ✅ النموذج */
+.container{
+  display:flex;justify-content:center;align-items:center;
+  flex-direction:column;min-height:60vh;
+}
+.glass.card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:18px;backdrop-filter:blur(14px);
+  padding:25px 30px;max-width:450px;width:90%;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+label{display:block;margin-bottom:8px;font-size:15px;}
+input,textarea{
+  width:100%;padding:10px;border-radius:8px;border:none;
+  margin-bottom:18px;font-size:15px;
+  background:rgba(255,255,255,0.15);color:#fff;
+}
+textarea{resize:none;height:100px;}
+.btn{
+  width:100%;border:none;border-radius:10px;padding:12px;
+  background:var(--accent);color:#fff;font-size:15px;
+  cursor:pointer;transition:.25s;
+}
+.btn:hover{background:var(--accent-d);}
+
+/* ✅ التوست */
+.toast{
+  position:fixed;bottom:18px;right:18px;padding:10px 14px;
+  border-radius:10px;color:#0b2b22;background:#b9f6e8;
+  border:1px solid #77e8cf;box-shadow:0 8px 22px rgba(0,0,0,.18);
+  opacity:0;transform:translateY(12px);
+  pointer-events:none;transition:.35s;z-index:125;max-width:80vw;
+}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.error{background:#ffd6d6;border-color:#ff9b9b;color:#4a0f0f;}

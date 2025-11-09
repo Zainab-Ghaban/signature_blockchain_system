@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تفاصيل الوثيقة - نظام التوثيق الرقمي</title>
+  <link rel="stylesheet" href="css/admin_document_details.css" />
+</head>
+<body>
+
+  <!-- زر القائمة -->
+  <button class="menu-icon" onclick="toggleMenu()">☰</button>
+
+  <!-- سهم الرجوع -->
+  <a href="admin.html" class="back-arrow" aria-label="رجوع"></a>
+
+  <!-- القائمة الجانبية -->
+  <nav id="sideMenu" class="side-menu">
+    <a href="admin.html">📥 طلبات التوثيق</a>
+    <a href="admin_reports.html">📊 التقارير والإحصائيات</a>
+    <a href="admin_employees.html">👥 الموظفون</a>
+    <a href="admin_settings.html">⚙️ إعدادات النظام</a>
+    <a href="admin_info.html">👤 معلوماتي</a>
+    <a href="index.html">🚪 تسجيل خروج</a>
+  </nav>
+
+  <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- العنوان -->
+  <header class="header-title">
+    <h1>تفاصيل الوثيقة</h1>
+  </header>
+
+  <!-- المحتوى -->
+  <main class="container">
+
+    <!-- 🧾 معلومات الوثيقة -->
+    <section class="glass card">
+      <h2>📄 معلومات الوثيقة</h2>
+      <p><strong>اسم الوثيقة:</strong> <span id="docName">عقد-001.pdf</span></p>
+      <p><strong>اسم الموظف:</strong> <span id="docEmployee">أحمد سالم</span></p>
+      <p><strong>تاريخ الرفع:</strong> <span id="docDate">2025-08-14</span></p>
+      <p><strong>حالة الوثيقة:</strong> <span id="docStatus" class="status pending">تحت المراجعة</span></p>
+      <p><strong>بصمة الوثيقة (SHA-256):</strong> <span id="docHash">b9f7e43a8f6a4e2b913f5c2dce94a62f1f99cdbf77a3c82dfef8aab2b0f2c6f9</span></p>
+    </section>
+
+    <!-- 🧠 ملاحظات التحقق -->
+    <section class="glass card notes">
+      <h2>📝 ملاحظات التحقق</h2>
+      <textarea id="docNotes" placeholder="أضف ملاحظاتك هنا..." rows="4"></textarea>
+      <div class="btns">
+        <button class="btn accept" onclick="approveDocument()">قبول وتوثيق</button>
+        <button class="btn reject" onclick="rejectDocument()">رفض الوثيقة</button>
+      </div>
+    </section>
+
+    <!-- 👁️ معاينة الوثيقة -->
+    <section class="glass card preview">
+      <h2>👁️ معاينة الوثيقة</h2>
+      <iframe id="docViewer" src="../assets/sample.pdf" frameborder="0"></iframe>
+      <p class="note">يمكنك معاينة محتوى الوثيقة مباشرة قبل اتخاذ القرار.</p>
+    </section>
+
+    <!-- 📎 إجراءات إضافية -->
+    <section class="glass card actions">
+      <button class="btn download" onclick="downloadDocument()">⬇️ تحميل الوثيقة</button>
+      <button class="btn back" onclick="goBack()">🔙 رجوع</button>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/admin_document_details.js"></script>
+</body>
+</html>
