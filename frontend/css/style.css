@@ -1,83 +1,126 @@
 :root{
-  --bg:#071e3d;
   --glass: rgba(255,255,255,0.12);
-  --border: rgba(255,255,255,0.25);
+  --glass-border: rgba(255,255,255,0.25);
+  --bg1:#071e3d; --bg2:#1f4287; --bg3:#278ea5;
   --text:#fff;
-  --accent:#1f8ac0;
-  --accent-hover:#0d6ba8;
 }
 
-*{box-sizing:border-box;}
 body{
   margin:0;
   font-family:"Tajawal",sans-serif;
   color:var(--text);
-  background:url("../assets/bg-watermark.png") no-repeat center/cover fixed;
-  overflow-x:hidden;
+  background: url("../assets/bg-watermark.png") center/cover fixed;
 }
 
 .menu-icon{
-  position:fixed;left:22px;top:22px;
-  font-size:26px;color:#fff;
-  background:transparent;border:none;cursor:pointer;z-index:120;
+  position: fixed;
+  top: 20px; left: 20px;
+  font-size: 25px; color:#fff;
+  background:none; border:none; cursor:pointer; z-index:120;
 }
 
-.back-arrow{
-  position:fixed;right:22px;top:26px;
-  width:18px;height:18px;
-  border-right:3px solid #fff;border-top:3px solid #fff;
-  transform:rotate(45deg);z-index:120;
-}
-
+/* القائمة */
 .side-menu{
-  position:fixed;top:0;left:-240px;width:240px;height:100vh;
-  background:rgba(0,0,0,0.35);backdrop-filter:blur(12px);
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;padding-top:80px;gap:6px;
-  transition:.3s;z-index:115;
+  position: fixed;
+  left:-230px; top:0;
+  width:230px; height:100%;
+  background: rgba(0,0,0,.45);
+  backdrop-filter:blur(12px);
+  padding-top:80px;
+  display:flex; flex-direction:column;
+  gap:5px;
+  transition:.35s; z-index:115;
 }
-.side-menu.show{left:0;}
+.side-menu.show{ left:0; }
 .side-menu a{
-  color:#fff;text-decoration:none;padding:12px 18px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  font-size:15px;transition:.25s;
+  padding:12px 20px; text-decoration:none;
+  color:#fff; font-size:15px;
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
-.side-menu a:hover,.side-menu a.active{background:rgba(255,255,255,0.16);}
+.side-menu a.active,
+.side-menu a:hover{
+  background:rgba(255,255,255,.18);
+}
 
 .overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.35);
-  opacity:0;visibility:hidden;transition:.25s;z-index:110;
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.4);
+  opacity:0; visibility:hidden;
+  transition:.3s; z-index:110;
 }
-.overlay.show{opacity:1;visibility:visible;}
+.overlay.show{
+  opacity:1; visibility:visible;
+}
 
-.header-title{text-align:center;margin-top:90px;}
-.header-title h1{font-size:28px;margin:0;}
-.header-title p{color:#cfd8e3;margin:6px 0 20px;}
+/* العنوان */
+.title{ text-align:center; margin-top:90px; }
 
+/* المحتوى */
 .container{
-  display:flex;justify-content:center;align-items:center;
-  flex-direction:column;min-height:50vh;
+  max-width:900px; margin:20px auto;
+  padding:10px;
 }
 
 .glass.card{
-  background:var(--glass);border:1px solid var(--border);
-  border-radius:16px;backdrop-filter:blur(14px);
-  padding:25px 30px;max-width:400px;width:90%;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
 }
 
-label{display:block;margin-bottom:8px;font-size:16px;font-weight:bold;}
-input{
-  width:100%;padding:10px;border-radius:8px;border:none;
-  font-size:15px;margin-bottom:18px;
+.methods{
+  display:flex;
+  gap:12px;
+  margin-bottom:12px;
+}
+.method-btn{
+  flex:1;
+  background:#1f8ac0;
+  padding:10px;
+  border:none; color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+}
+.method-btn:hover{
+  background:#166d96;
 }
 
-.buttons{display:flex;justify-content:space-between;gap:10px;}
-.btn{
-  flex:1;border:none;border-radius:8px;padding:10px;
-  font-size:15px;cursor:pointer;transition:.25s;
+.tab{ display:none; margin-top:10px; }
+.tab label{ font-size:14px; }
+
+input[type="text"], input[type="file"]{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  margin:8px 0 12px;
 }
-.btn.verify{background:var(--accent);color:#fff;}
-.btn.verify:hover{background:var(--accent-hover);}
-.btn.scan{background:#444;color:#fff;}
-.btn.scan:hover{opacity:.8;}
+
+.primary{
+  background:#278ea5;
+  border:none;
+  padding:10px 14px;
+  width:100%; color:#fff;
+  border-radius:10px; cursor:pointer;
+}
+.primary:hover{ background:#1f6f85; }
+
+.result-card{
+  animation:fade .3s;
+}
+@keyframes fade{
+  from{opacity:0;} to{opacity:1;}
+}
+
+/* QR صندوق */
+.qr-box{
+  width:200px; height:200px;
+  background:rgba(255,255,255,.15);
+  margin:20px auto; border-radius:12px;
+  display:flex; justify-content:center; align-items:center;
+  font-size:40px;
+}
